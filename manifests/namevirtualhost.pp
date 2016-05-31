@@ -5,5 +5,6 @@ define apache::namevirtualhost {
   concat::fragment { "NameVirtualHost ${addr_port}":
     target  => $::apache::ports_file,
     content => template('apache/namevirtualhost.erb'),
+    order   => regsubst($addr_port,'^(.*?):','1'),
   }
 }

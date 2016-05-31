@@ -5,5 +5,6 @@ define apache::listen {
   concat::fragment { "Listen ${listen_addr_port}":
     target  => $::apache::ports_file,
     content => template('apache/listen.erb'),
+    order   => $listen_addr_port,
   }
 }
